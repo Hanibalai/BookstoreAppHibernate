@@ -1,22 +1,30 @@
 package hibernate.test.entities;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 @Entity
+@Table(name = "Book")
 @Getter
 @Setter
 @RequiredArgsConstructor
+@EqualsAndHashCode
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
-    private String  title;
-    private float price;
-    private int amount;
+    @Column(name = "title")
+    private String title;
+    @Column(name = "price")
+    private BigDecimal price;
+    @Column(name = "quantity")
+    private int quantity;
 
     @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
     @JoinColumn(name = "author_id")
@@ -26,10 +34,10 @@ public class Book implements Serializable {
     @JoinColumn (name = "genre_id")
     private Genre genre;
 
-    public Book(String title, float price, int amount) {
+    public Book(String title, BigDecimal price, int quantity) {
         this.title = title;
         this.price = price;
-        this.amount = amount;
+        this.quantity = quantity;
     }
 
     @Override
@@ -38,7 +46,7 @@ public class Book implements Serializable {
                 "id = " + id +
                 ", title = '" + title + '\'' +
                 ", price = " + price +
-                ", amount = "  + amount +
+                ", amount = "  + quantity +
                 ", author = "  + author.getName() +
                 ", genre = "  + genre.getName();
     }
