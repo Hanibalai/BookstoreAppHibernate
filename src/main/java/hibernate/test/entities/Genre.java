@@ -18,9 +18,8 @@ import java.util.List;
 public class Genre implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
-    @Column(name = "name")
+    @Column(name = "name", unique = true, length = 30, nullable = false)
     private String name;
     @OneToMany (mappedBy = "genre", cascade = CascadeType.ALL)
     private List<Book> books;

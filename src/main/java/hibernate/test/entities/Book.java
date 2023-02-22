@@ -17,9 +17,8 @@ import java.math.BigDecimal;
 public class Book implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private long id;
-    @Column(name = "title")
+    @Column(name = "title", length = 40)
     private String title;
     @Column(name = "price")
     private BigDecimal price;
