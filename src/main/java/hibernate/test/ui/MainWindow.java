@@ -4,6 +4,8 @@ import hibernate.test.services.AuthorService;
 import hibernate.test.services.BookService;
 import hibernate.test.services.GenreService;
 
+import java.math.BigDecimal;
+
 public class MainWindow {
     public void mainMenu() {
         int category;
@@ -56,20 +58,20 @@ public class MainWindow {
                 case 3 -> Console.showResultList(service.getByTitle(Console.getName(entity)));
                 case 4 -> {
                     String title = Console.getName(entity);
-                    float price = Console.getBookPrice();
-                    int amount = Console.getBookAmount();
+                    BigDecimal price = Console.getBookPrice();
+                    int quantity = Console.getBookQuantity();
                     String authorName = Console.getName("author");
                     String genreName = Console.getName("genre");
-                    Console.showResult(service.save(title, price, amount, authorName, genreName));
+                    Console.showResult(service.save(title, price, quantity, authorName, genreName));
                 }
                 case 5 -> {
                     long id = Console.getId(entity);
                     String title = Console.updateBookData("title");
-                    float price = Console.updateBookPrice();
-                    int amount = Console.updateBookAmount();
+                    BigDecimal price = Console.updateBookPrice();
+                    int quantity = Console.updateBookQuantity();
                     String authorName = Console.updateBookData("author");
                     String genreName = Console.updateBookData("genre");
-                    Console.showResult(service.update(id, title, price, amount, authorName, genreName));
+                    Console.showResult(service.update(id, title, price, quantity, authorName, genreName));
                 }
                 case 6 -> Console.showResult(service.deleteById(Console.getId(entity)));
                 case 7 -> Console.showResult(service.deleteByTitle(Console.getName(entity)));

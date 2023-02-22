@@ -6,6 +6,7 @@ import hibernate.test.repository.AuthorRepository;
 import hibernate.test.repository.BookRepository;
 import hibernate.test.entities.Book;
 import hibernate.test.repository.GenreRepository;
+import java.math.BigDecimal;
 import java.util.List;
 
 public class BookService {
@@ -27,7 +28,7 @@ public class BookService {
         return bookRepository.getByTitle(title);
     }
 
-    public String save(String title, float price, int amount, String authorName, String genreName) {
+    public String save(String title, BigDecimal price, int quantity, String authorName, String genreName) {
         AuthorRepository authorRepository = new AuthorRepository();
         GenreRepository genreRepository = new GenreRepository();
         Author author = authorRepository.getByName(authorName);
@@ -40,7 +41,7 @@ public class BookService {
             genre = new Genre(genreName);
             genreRepository.save(genre);
         }
-        Book book = new Book(title, price, amount);
+        Book book = new Book(title, price, quantity);
         book.setAuthor(author);
         book.setGenre(genre);
         try {
@@ -51,12 +52,12 @@ public class BookService {
         }
     }
 
-    public String update(long id, String title, float price, int amount, String authorName, String genreName) {
+    public String update(long id, String title, BigDecimal price, int quantity, String authorName, String genreName) {
         Book book = bookRepository.getById(id);
         if (book != null) {
             if (!title.isEmpty()) book.setTitle(title);
-            if (price != -1) book.setPrice(price);
-            if (amount != -1) book.setAmount(amount);
+            if (price.intValue() != -1) book.setPrice(price);
+            if (quantity != -1) book.setQuantity(quantity);
             if (!authorName.isEmpty() && !authorName.equals(book.getAuthor().getName())) {
                 Author author = new AuthorRepository().getByName(authorName);
                 if (author == null) book.setAuthor(new Author(authorName));

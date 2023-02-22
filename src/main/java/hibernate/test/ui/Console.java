@@ -3,6 +3,7 @@ package hibernate.test.ui;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.List;
 
 class Console {
@@ -30,14 +31,14 @@ class Console {
         return getNumber(getString());
     }
 
-    static int getBookAmount() {
-        System.out.println("Please enter book amount");
+    static int getBookQuantity() {
+        System.out.println("Please enter book quantity");
         return (int) getNumber(getString());
     }
 
-    static float getBookPrice() {
+    static BigDecimal getBookPrice() {
         System.out.println("Please enter book price");
-        return getFloatNumber(getString());
+        return getDecimal(getString());
     }
 
     static String updateBookData(String data) {
@@ -45,17 +46,17 @@ class Console {
         return getString();
     }
 
-    static float updateBookPrice() {
+    static BigDecimal updateBookPrice() {
         System.out.println("Enter a new price for the book. (Leave blank to stay the price unchanged)");
         String price = getString();
-        if (price != null && price.isEmpty()) return -1;
-        else return getFloatNumber(price);
+        if (price.isEmpty()) return new BigDecimal(-1);
+        else return getDecimal(price);
     }
 
-    static int updateBookAmount() {
-        System.out.println("Enter a new amount for the book. (Leave blank to stay the price unchanged)");
+    static int updateBookQuantity() {
+        System.out.println("Enter a new quantity for the book. (Leave blank to stay the quantity unchanged)");
         String amount = getString();
-        if (amount != null && amount.isEmpty()) return -1;
+        if (amount.isEmpty()) return -1;
         else return (int) getNumber(amount);
     }
 
@@ -77,21 +78,21 @@ class Console {
         } else System.out.println("Empty result");
     }
 
-    private static long getNumber(String stringNumber) {
+    private static long getNumber(String number) {
         try {
-            return Long.parseLong(stringNumber);
+            return Long.parseLong(number);
         } catch (NumberFormatException e) {
             System.out.println("Wrong input\nTry again");
             return getNumber(getString());
         }
     }
 
-    private static float getFloatNumber(String stringNumber) {
+    private static BigDecimal getDecimal(String decimal) {
         try {
-            return Float.parseFloat(stringNumber);
+            return new BigDecimal(decimal);
         } catch (NumberFormatException e) {
             System.out.println("Wrong input\nTry again");
-            return getFloatNumber(getString());
+            return getDecimal(getString());
         }
     }
 
@@ -101,7 +102,7 @@ class Console {
         } catch (IOException e) {
             System.out.println("IO exception.\n" + e.getMessage());
         }
-        return null;
+        return "";
     }
 
     static void close() {
