@@ -1,6 +1,7 @@
 package hibernate.test.entities;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -9,16 +10,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@Table(name = "Genre")
 @Setter
 @Getter
 @RequiredArgsConstructor
+@EqualsAndHashCode
 public class Genre implements Serializable {
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private long id;
-
+    @Column(name = "name")
     private String name;
-
     @OneToMany (mappedBy = "genre", cascade = CascadeType.ALL)
     private List<Book> books;
 
