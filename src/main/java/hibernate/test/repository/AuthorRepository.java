@@ -42,21 +42,23 @@ public class AuthorRepository {
         return books;
     }
 
-    public void save(Author author) {
+    public Author save(Author author) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.persist(author);
             transaction.commit();
+            return author;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Author with the same name already exists in the database");
         }
     }
 
-    public void update(Author author) {
+    public Author update(Author author) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(author);
+            author = session.merge(author);
             transaction.commit();
+            return author;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Author with the same name already exists in the database");
         }

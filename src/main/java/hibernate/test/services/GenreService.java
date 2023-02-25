@@ -32,8 +32,8 @@ public class GenreService {
 
     public String save(String name) {
         try {
-            genreRepository.save(new Genre(name));
-            return "Genre has been been successfully saved to the database";
+            Genre genre = genreRepository.save(new Genre(name));
+            return "Genre has been been successfully saved to the database:\n" + genre;
         } catch (RuntimeException e) {
             return e.getMessage();
         }
@@ -46,8 +46,8 @@ public class GenreService {
         } else {
             genre.setName(name);
             try {
-                genreRepository.update(genre);
-                return "Genre details have been successfully updated";
+                genre = genreRepository.update(genre);
+                return "Genre details have been successfully updated:\n" + genre;
             } catch (RuntimeException e) {
                 return e.getMessage();
             }

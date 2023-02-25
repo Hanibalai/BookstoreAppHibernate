@@ -32,21 +32,23 @@ public class BookRepository {
         }
     }
 
-    public void save(Book book) {
+    public Book save(Book book) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.persist(book);
             transaction.commit();
+            return book;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Book saving error " + e.getMessage());
         }
     }
 
-    public void update(Book book) {
+    public Book update(Book book) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(book);
+            book = session.merge(book);
             transaction.commit();
+            return book;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Book updating error " + e.getMessage());
         }

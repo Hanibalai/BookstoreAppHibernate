@@ -34,8 +34,8 @@ public class AuthorService {
 
     public String save(String name) {
         try {
-            authorRepository.save(new Author(name));
-            return "Author has been been successfully saved to the database";
+            Author author = authorRepository.save(new Author(name));
+            return "Author has been been successfully saved to the database:\n" + author;
         } catch (RuntimeException e) {
             return e.getMessage();
         }
@@ -48,8 +48,8 @@ public class AuthorService {
         } else {
             author.setName(name);
             try {
-                authorRepository.update(author);
-                return "Author's details have been successfully updated";
+                author = authorRepository.update(author);
+                return "Author's details have been successfully updated:\n" + author;
             } catch (RuntimeException e) {
                 return e.getMessage();
             }
@@ -61,7 +61,7 @@ public class AuthorService {
         if (author != null) {
             authorRepository.delete(author);
             return "Author has been successfully deleted from the database";
-        } else return "Deletion failed. Author with the given ID number doesn't exist";
+        } else return "Deletion error. Author with the given ID number doesn't exist";
     }
 
     public String delete(String name) {
@@ -69,6 +69,6 @@ public class AuthorService {
         if (author != null) {
             authorRepository.delete(author);
             return "Author has been successfully deleted from the database";
-        } else return "Deletion failed. Author with the same name doesn't exist";
+        } else return "Deletion error. Author with the same name doesn't exist";
     }
 }

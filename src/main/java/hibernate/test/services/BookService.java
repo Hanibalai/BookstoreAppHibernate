@@ -45,8 +45,8 @@ public class BookService {
         book.setAuthor(author);
         book.setGenre(genre);
         try {
-            bookRepository.save(book);
-            return "Book has been been successfully saved to the database";
+            book = bookRepository.save(book);
+            return "Book has been been successfully saved to the database:\n" + book;
         } catch (RuntimeException e) {
             return e.getMessage();
         }
@@ -69,8 +69,8 @@ public class BookService {
                 else book.setGenre(genre);
             }
             try {
-                bookRepository.update(book);
-                return "Book details have been successfully updated";
+                book = bookRepository.update(book);
+                return "Book details have been successfully updated:\n" + book;
             } catch (RuntimeException e) {
                 return e.getMessage();
             }

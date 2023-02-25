@@ -43,21 +43,23 @@ public class GenreRepository {
         return books;
     }
 
-    public void save(Genre genre) {
+    public Genre save(Genre genre) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
             session.persist(genre);
             transaction.commit();
+            return genre;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Genre with the same name already exists in the database");
         }
     }
 
-    public void update(Genre genre) {
+    public Genre update(Genre genre) {
         try (Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession()) {
             Transaction transaction = session.beginTransaction();
-            session.merge(genre);
+            genre = session.merge(genre);
             transaction.commit();
+            return genre;
         } catch (ConstraintViolationException e) {
             throw new RuntimeException("Genre with the same name already exists in the database");
         }
