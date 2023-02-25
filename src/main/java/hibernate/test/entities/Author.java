@@ -21,7 +21,7 @@ public class Author implements Serializable {
     private long id;
     @Column(name = "name", unique = true, length = 30, nullable = false)
     private String name;
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 
     public Author(String name) {
@@ -40,7 +40,7 @@ public class Author implements Serializable {
 
     @Override
     public String toString() {
-        return "Author id = " + id +
+        return "Author: ID = " + id +
                 ", name = '" + name + '\'';
     }
 }

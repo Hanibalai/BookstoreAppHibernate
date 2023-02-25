@@ -25,11 +25,11 @@ public class Book implements Serializable {
     @Column(name = "quantity")
     private int quantity;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @ManyToOne(cascade = {CascadeType.MERGE, CascadeType.REFRESH})
+    @ManyToOne(cascade = {CascadeType.MERGE})
     @JoinColumn (name = "genre_id")
     private Genre genre;
 
@@ -41,12 +41,12 @@ public class Book implements Serializable {
 
     @Override
     public String toString() {
-        return "Book " +
-                "id = " + id +
+        return "Book: " +
+                "ID = " + id +
                 ", title = '" + title + '\'' +
                 ", price = " + price +
                 ", amount = "  + quantity +
-                ", author = "  + author.getName() +
-                ", genre = "  + genre.getName();
+                ", author = '" + author.getName() +
+                "', genre = '" + genre.getName() + '\'';
     }
 }

@@ -21,7 +21,7 @@ public class Genre implements Serializable {
     private long id;
     @Column(name = "name", unique = true, length = 30, nullable = false)
     private String name;
-    @OneToMany (mappedBy = "genre", cascade = CascadeType.ALL)
+    @OneToMany (mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 
     public Genre(String name) {
@@ -40,7 +40,7 @@ public class Genre implements Serializable {
 
     @Override
     public String toString() {
-        return "Genre id = " + id +
+        return "Genre: ID = " + id +
                 ", name = '" + name + '\'';
     }
 }

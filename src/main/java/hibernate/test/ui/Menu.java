@@ -60,6 +60,7 @@ class Menu {
             case "book" -> BOOK_OPTIONS.forEach(System.out::println);
             case "genre" -> GENRE_OPTIONS.forEach(System.out::println);
         }
+        System.out.println("Please select an option");
     }
 
     static void showTips(int lastOption) {

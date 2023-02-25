@@ -3,7 +3,6 @@ package hibernate.test.ui;
 import hibernate.test.services.AuthorService;
 import hibernate.test.services.BookService;
 import hibernate.test.services.GenreService;
-
 import java.math.BigDecimal;
 
 public class MainWindow {
