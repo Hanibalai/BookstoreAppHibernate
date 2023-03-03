@@ -30,7 +30,7 @@ public class Book implements Serializable {
     private Author author;
 
     @ManyToOne(cascade = {CascadeType.MERGE})
-    @JoinColumn (name = "genre_id")
+    @JoinColumn(name = "genre_id")
     private Genre genre;
 
     public Book(String title, BigDecimal price, int quantity) {
