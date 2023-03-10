@@ -1,4 +1,4 @@
-package hibernate.test.utils.anotherFactory;
+package hibernate.test.util.anotherFactory;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.Metadata;

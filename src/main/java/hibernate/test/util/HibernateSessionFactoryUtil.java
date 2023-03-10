@@ -1,4 +1,4 @@
-package hibernate.test.utils;
+package hibernate.test.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;

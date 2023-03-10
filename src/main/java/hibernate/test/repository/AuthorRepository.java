@@ -1,8 +1,8 @@
 package hibernate.test.repository;
 
-import hibernate.test.entities.Author;
-import hibernate.test.entities.Book;
-import hibernate.test.utils.HibernateSessionFactoryUtil;
+import hibernate.test.entity.Author;
+import hibernate.test.entity.Book;
+import hibernate.test.util.HibernateSessionFactoryUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.exception.ConstraintViolationException;

@@ -1,8 +1,8 @@
 package hibernate.test.ui;
 
-import hibernate.test.services.AuthorService;
-import hibernate.test.services.BookService;
-import hibernate.test.services.GenreService;
+import hibernate.test.service.AuthorService;
+import hibernate.test.service.BookService;
+import hibernate.test.service.GenreService;
 import java.math.BigDecimal;
 
 public class MainWindow {

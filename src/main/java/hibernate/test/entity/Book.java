@@ -1,4 +1,4 @@
-package hibernate.test.entities;
+package hibernate.test.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;

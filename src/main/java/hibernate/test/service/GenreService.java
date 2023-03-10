@@ -1,8 +1,8 @@
-package hibernate.test.services;
+package hibernate.test.service;
 
-import hibernate.test.entities.Book;
+import hibernate.test.entity.Book;
 import hibernate.test.repository.GenreRepository;
-import hibernate.test.entities.Genre;
+import hibernate.test.entity.Genre;
 import java.util.List;
 
 public class GenreService {

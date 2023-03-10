@@ -1,4 +1,4 @@
-package hibernate.test.entities;
+package hibernate.test.entity;
 
 import jakarta.persistence.*;
 import lombok.EqualsAndHashCode;
@@ -10,27 +10,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "Genre")
-@Setter
+@Table(name = "Author")
 @Getter
+@Setter
 @RequiredArgsConstructor
 @EqualsAndHashCode
-public class Genre implements Serializable {
+public class Author implements Serializable {
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Column(name = "name", unique = true, length = 30, nullable = false)
     private String name;
-    @OneToMany (mappedBy = "genre", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Book> books;
 
-    public Genre(String name) {
+    public Author(String name) {
         this.name = name;
         this.books = new ArrayList<>();
     }
 
     public void addBook(Book book) {
-        book.setGenre(this);
+        book.setAuthor(this);
         this.books.add(book);
     }
 
@@ -40,7 +40,7 @@ public class Genre implements Serializable {
 
     @Override
     public String toString() {
-        return "Genre: ID = " + id +
+        return "Author: ID = " + id +
                 ", name = '" + name + '\'';
     }
 }

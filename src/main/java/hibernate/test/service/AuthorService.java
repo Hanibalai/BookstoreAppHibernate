@@ -1,8 +1,8 @@
-package hibernate.test.services;
+package hibernate.test.service;
 
 import hibernate.test.repository.AuthorRepository;
-import hibernate.test.entities.Author;
-import hibernate.test.entities.Book;
+import hibernate.test.entity.Author;
+import hibernate.test.entity.Book;
 
 import java.util.List;
 

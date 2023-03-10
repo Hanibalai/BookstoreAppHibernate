@@ -1,10 +1,10 @@
-package hibernate.test.services;
+package hibernate.test.service;
 
-import hibernate.test.entities.Author;
-import hibernate.test.entities.Genre;
+import hibernate.test.entity.Author;
+import hibernate.test.entity.Genre;
 import hibernate.test.repository.AuthorRepository;
 import hibernate.test.repository.BookRepository;
-import hibernate.test.entities.Book;
+import hibernate.test.entity.Book;
 import hibernate.test.repository.GenreRepository;
 import java.math.BigDecimal;
 import java.util.List;
